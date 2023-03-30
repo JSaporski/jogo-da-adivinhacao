@@ -114,3 +114,10 @@ button:hover {
   font-weight: 600;
   color: var(--dark-purple);
 }
+
+/* Responsive */
+@media only screen and (max-width: 500px) {
+  #mainContent {
+    padding-inline: 3.2rem;
+  }
+}
