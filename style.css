@@ -1,0 +1,116 @@
+/* General Styles */
+:root {
+  font-size: 62.5%;
+
+  /*** Colors ***/
+  --primary-purple: hsl(240, 81%, 71%);
+  --dark-purple: hsl(240, 27%, 28%);
+  --dark-purple-80: hsla(240, 27%, 28%, 0.8);
+  --grayish-blue: hsl(212, 23%, 89%);
+  --white: hsl(0, 100%, 100%);
+
+  /*** Typography ***/
+  --montserrat: 'Montserrat', sans-serif;
+  --dm-sans: 'DM Sans', sans-serif;
+  --fs-lg: 2.4rem;
+  --fs-md: 1.6rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  font-size: 1.6rem;
+  background: linear-gradient(287.56deg, #c2e9fb 0%, #a1c4fd 100%);
+}
+
+body,
+input,
+.btn {
+  font-family: var(--dm-sans);
+}
+
+button {
+  font-family: inherit;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--white);
+  background-color: var(--primary-purple);
+  padding: 1.6rem;
+  border-radius: 0.4rem;
+  border: 0;
+  cursor: pointer;
+  transition: filter 0.3s;
+}
+
+button:hover {
+  filter: brightness(0.9);
+}
+
+/* Main Content & Form - Start Screen */
+.start-screen.hide,
+.congrats-screen.hide {
+  display: none;
+}
+
+#mainContent {
+  width: min(42.8rem, 90%);
+  padding: 6.4rem;
+  text-align: center;
+  background-color: var(--white);
+  border-radius: 0.6rem;
+  box-shadow: 0 0.2rem 0.4rem 0 rgba(0, 0, 0, 0.1);
+}
+
+#mainContent h1 {
+  margin-bottom: 1.6rem;
+  font-family: var(--montserrat);
+  font-size: var(--fs-lg);
+  color: var(--dark-purple);
+}
+
+#mainContent p {
+  margin-bottom: 4.8rem;
+  font-family: var(--dm-sans);
+  font-size: var(--fs-md);
+  color: var(--dark-purple-80);
+}
+
+#mainContent form {
+  display: flex;
+  justify-content: center;
+}
+
+#mainContent form input {
+  width: 4.3rem;
+  height: 5.3rem;
+  font-size: var(--fs-md);
+  color: var(--dark-purple);
+  text-align: center;
+  background-color: var(--grayish-blue);
+  border-radius: 0.4rem 0 0 0.4rem;
+  border: none;
+}
+
+#mainContent form input::-webkit-inner-spin-button,
+#mainContent form input::-webkit-outer-spin-button {
+  appearance: none;
+}
+
+#mainContent form .btn {
+  border-radius: 0 0.4rem 0.4rem 0;
+}
+
+/* Main Content - Congrats Screen */
+.congrats-screen h2 {
+  margin-bottom: 4.8rem;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--dark-purple);
+}
