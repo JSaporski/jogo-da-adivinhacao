@@ -8,7 +8,7 @@ const congratsScreen = document.querySelector('.congrats-screen')
 const howManyTries = congratsScreen.querySelector('h2')
 const playAgain = document.querySelector('#playAgain')
 
-const randomNumber = Math.round(Math.random() * 10)
+let randomNumber = Math.round(Math.random() * 10)
 let xAttempts = 1
 
 function handleVerifyGuessedNumber(event) {
@@ -21,25 +21,30 @@ function handleVerifyGuessedNumber(event) {
   } else {
     const number = Number(inputNumber.value)
 
-    while (number !== randomNumber) {
+    if (number !== randomNumber) {
       // Sempre irá rodar caso o número não seja o certo.
       xAttempts++
+
       return alert('Ainda não foi dessa vez!')
-    }
-
-    startScreen.classList.add('hide')
-    congratsScreen.classList.remove('hide')
-
-    if (xAttempts === 1) {
-      howManyTries.innerText = `Você acertou de primeira!`
     } else {
-      howManyTries.innerText = `Acertou em ${xAttempts} tentativas!`
+      startScreen.classList.add('hide')
+      congratsScreen.classList.remove('hide')
+
+      xAttempts === 1
+        ? (howManyTries.innerText = `Você acertou de primeira!`)
+        : (howManyTries.innerText = `Acertou em ${xAttempts} tentativas!`)
     }
+
+    inputNumber.value = '' // Reseta o campo input
   }
 }
 
 function handlePlayAgain() {
-  window.location.reload() // Recarrega a página.
+  startScreen.classList.remove('hide')
+  congratsScreen.classList.add('hide')
+
+  randomNumber = Math.round(Math.random() * 10)
+  xAttempts = 1
 }
 
 tryBtn.addEventListener('click', handleVerifyGuessedNumber)
