@@ -1,7 +1,7 @@
 // Start Screen Elements
 const startScreen = document.querySelector('.start-screen')
-const inputNumber = document.querySelector('#inputNumber')
-const tryBtn = document.querySelector('#btn')
+const inputNumber = startScreen.querySelector('#inputNumber')
+const tryBtn = startScreen.querySelector('#btn')
 
 // Congrats Screen Elements
 const congratsScreen = document.querySelector('.congrats-screen')
@@ -10,6 +10,25 @@ const playAgain = document.querySelector('#playAgain')
 
 let randomNumber = Math.round(Math.random() * 10)
 let xAttempts = 1
+
+// Funções
+function handlePlayAgain() {
+  toggleScreen()
+
+  randomNumber = Math.round(Math.random() * 10)
+  xAttempts = 1
+}
+
+function toggleScreen() {
+  startScreen.classList.toggle('hide')
+  congratsScreen.classList.toggle('hide')
+}
+
+function handleResetOnEnter(event) {
+  if (event.key === 'Enter' && startScreen.classList.contains('hide')) {
+    handlePlayAgain()
+  }
+}
 
 function handleVerifyGuessedNumber(event) {
   event.preventDefault() // previne o comportamento padrão do botão.
@@ -24,11 +43,11 @@ function handleVerifyGuessedNumber(event) {
     if (number !== randomNumber) {
       // Sempre irá rodar caso o número não seja o certo.
       xAttempts++
+      inputNumber.value = '' // Reseta o campo input
 
       return alert('Ainda não foi dessa vez!')
     } else {
-      startScreen.classList.add('hide')
-      congratsScreen.classList.remove('hide')
+      toggleScreen()
 
       xAttempts === 1
         ? (howManyTries.innerText = `Você acertou de primeira!`)
@@ -39,13 +58,7 @@ function handleVerifyGuessedNumber(event) {
   }
 }
 
-function handlePlayAgain() {
-  startScreen.classList.remove('hide')
-  congratsScreen.classList.add('hide')
-
-  randomNumber = Math.round(Math.random() * 10)
-  xAttempts = 1
-}
-
+// Eventos
 tryBtn.addEventListener('click', handleVerifyGuessedNumber)
 playAgain.addEventListener('click', handlePlayAgain)
+window.addEventListener('keydown', handleResetOnEnter)
